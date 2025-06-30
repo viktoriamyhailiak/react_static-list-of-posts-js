@@ -1,7 +1,6 @@
+import './PostInfo.scss';
 import { CommentList } from '../CommentList/CommentList';
 import { UserInfo } from '../UserInfo/UserInfo';
-import comments from '../../api/comments.json';
-import users from '../../api/users.json';
 
 export const PostInfo = ({ post }) => (
   <div className="PostInfo">
@@ -11,14 +10,12 @@ export const PostInfo = ({ post }) => (
       <p>
         {' Posted by  '}
 
-        <UserInfo user={users.find(x => x.id === post.userId)} />
+        <UserInfo user={post.user} />
       </p>
     </div>
 
     <p className="PostInfo__body">{post.body}</p>
 
-    <CommentList
-      comments={comments.filter(comment => comment.postId === post.id)}
-    />
+    <CommentList comments={post.comments} />
   </div>
 );
